@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class AcronymsItemItem(
+data class AcronymsItem(
     @Json(name = "lfs")
-    val lfs: List<Lf?>? = null,
+    val lfs: List<Lfs>? = null,
     @Json(name = "sf")
     val sf: String? = null
 )

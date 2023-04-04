@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">ChristopherTamayo-Achronyms</string>
+    <string name="app_name">Search Acronyms</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search...</string>
+    <string name="searchMenu">Search</string>
+    <string name="acronyms">Acronyms</string>
 </resources>

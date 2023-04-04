@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ServiceAPI {
 
-    @GET(ACRONYMS)
+    @GET(ACRONYMS_PATH)
     suspend fun getAcronyms(
         @Query("sf") sf: String?
     ):Response<List<AcronymsItem>>
@@ -20,7 +20,7 @@ interface ServiceAPI {
 
     companion object{
         const val BASE_PATH = "http://www.nactem.ac.uk/software/acromine/"
-        private const val ACRONYMS = "dictionary.py"
+        private const val ACRONYMS_PATH = "dictionary.py"
     }
 
 }

@@ -2,6 +2,7 @@ package com.tamayo.christophertamayo_achronyms.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.tamayo.christophertamayo_achronyms.R
@@ -26,6 +27,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigationView.setupWithNavController(navHost.navController)
 
+    }
+
+    //Navigate between fragment with the arrow
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.frag_container)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
 

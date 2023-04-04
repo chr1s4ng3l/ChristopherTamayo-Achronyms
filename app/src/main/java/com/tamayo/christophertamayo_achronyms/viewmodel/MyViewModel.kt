@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tamayo.christophertamayo_achronyms.data.model.AcronymsItem
-import com.tamayo.christophertamayo_achronyms.data.model.Lfs
 import com.tamayo.christophertamayo_achronyms.rest.MyRepositoryImpl
 import com.tamayo.christophertamayo_achronyms.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,20 +19,22 @@ class MyViewModel @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-    var mTag: String = ""
-    var lf : String = ""
-    var since: String = ""
-    var freq: String = ""
+    var tag: String = ""
+
 
     private val _acronym: MutableLiveData<UIState<List<AcronymsItem>>> = MutableLiveData(UIState.LOADING)
     val acronym: LiveData<UIState<List<AcronymsItem>>> get() = _acronym
+
 
 
     fun getAcronym(tag: String? = null) {
         tag?.let {
             viewModelScope.launch(ioDispatcher) {
                 myRepository.getAllAcronyms(tag).collect {
-                    _acronym.postValue(it)
+                        println("This is sparta $it")
+                        _acronym.postValue(it)
+
+
                 }
             }
         }

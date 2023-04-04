@@ -22,17 +22,14 @@ class AcronymFragment : Fragment() {
 
     private val acronymAdapter by lazy {
         MyAdapter {
-            myViewModel.lf = it.lf.toString()
-            myViewModel.since = it.since.toString()
-            myViewModel.freq = it.freq.toString()
         }
     }
 
     private val myViewModel by lazy {
-        ViewModelProvider(this)[MyViewModel::class.java]
+        ViewModelProvider(requireActivity())[MyViewModel::class.java]
     }
 
-    private val binding by lazy{
+    private val binding by lazy {
         FragmentAcronymBinding.inflate(layoutInflater)
     }
 
@@ -56,9 +53,8 @@ class AcronymFragment : Fragment() {
 
         }
 
-        myViewModel.getAcronym(myViewModel.mTag)
+        myViewModel.getAcronym(myViewModel.tag)
         getAcronymByTag()
-
 
 
         // Inflate the layout for this fragment
@@ -66,21 +62,27 @@ class AcronymFragment : Fragment() {
     }
 
     private fun getAcronymByTag() {
+        print("Holaaa")
         //ViewModel here
         myViewModel.acronym.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is UIState.LOADING -> {
+                    println("Here is my Fragment LOADING")
                 }
 
                 is UIState.SUCCESS<List<AcronymsItem>> -> {
-                    state.response.forEach{
+
+                    state.response.forEach {
+                        println("loloolo -> $it")
+                        binding.result.text = "About ${it.lfs?.count().toString()} results for ${myViewModel.tag}"
                         acronymAdapter.updateItems(it.lfs ?: emptyList())
                     }
 
-                    }
+                }
                 is UIState.ERROR -> {
+                    println("Here is my Fragment ERROR")
                     state.error.localizedMessage?.let {
-                        showError(it){
+                        showError(it) {
 
                         }
                     }

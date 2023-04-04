@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Lf(
+data class Lfs(
     @Json(name = "freq")
     val freq: Int? = null,
     @Json(name = "lf")
@@ -13,5 +13,5 @@ data class Lf(
     @Json(name = "since")
     val since: Int? = null,
     @Json(name = "vars")
-    val vars: List<Var?>? = null
+    val vars: List<Var>? = null
 )

@@ -1,6 +1,7 @@
 package com.tamayo.christophertamayo_achronyms.di
 
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tamayo.christophertamayo_achronyms.rest.ServiceAPI
 import dagger.Module
 import dagger.Provides
@@ -16,10 +17,8 @@ import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface NetworkModulo {
+class NetworkModulo {
 
-    @Provides
-    fun providesMoshi(): Moshi = Moshi.Builder().build()
 
     @Provides
     fun providesRetrofit(
@@ -29,6 +28,11 @@ interface NetworkModulo {
         .baseUrl(ServiceAPI.BASE_PATH)
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .client(okHttpClient).build()
+
+    @Provides
+    fun providesMoshi(): Moshi = Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
     @Provides
     fun providesOkhttpClient(

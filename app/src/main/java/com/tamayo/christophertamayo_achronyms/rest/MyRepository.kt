@@ -1,20 +1,19 @@
 package com.tamayo.christophertamayo_achronyms.rest
 
-import com.tamayo.christophertamayo_achronyms.data.model.Lf
+import com.tamayo.christophertamayo_achronyms.data.model.AcronymsItem
+import com.tamayo.christophertamayo_achronyms.data.model.Lfs
 import com.tamayo.christophertamayo_achronyms.utils.UIState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 interface MyRepository {
-
-    suspend fun getAllAcronyms(tag: String): Flow<UIState<List<Lf>>>
-
+    suspend fun getAllAcronyms(tag: String): Flow<UIState<List<AcronymsItem>>>
 }
 
 class MyRepositoryImpl @Inject constructor(private val serviceAPI: ServiceAPI) : MyRepository {
 
-    override suspend fun getAllAcronyms(tag: String): Flow<UIState<List<Lf>>> = flow {
+    override suspend fun getAllAcronyms(tag: String): Flow<UIState<List<AcronymsItem>>> = flow {
         emit(UIState.LOADING)
 
         try {

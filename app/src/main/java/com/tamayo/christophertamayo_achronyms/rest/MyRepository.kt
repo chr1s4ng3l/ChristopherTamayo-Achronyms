@@ -19,7 +19,6 @@ class MyRepositoryImpl @Inject constructor(private val serviceAPI: ServiceAPI) :
             val response = serviceAPI.getAcronyms(tag)
             if (response.isSuccessful) {
                 response.body()?.let {
-                    println("This is my repository$it")
                     emit(UIState.SUCCESS(it))
                 } ?: throw Exception("Response was null")
             } else {
